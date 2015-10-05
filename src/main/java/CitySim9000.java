@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class CitySim9000
 {
 	public static void main(String[] args)
@@ -7,12 +9,16 @@ public class CitySim9000
 			try
 			{
 				int seed = Integer.parseInt(args[0]);
-				Location.setSeed(seed);
+				Map.setRand(seed);
 				Driver[] drivers = new Driver[5];
 				for(int i = 0; i<5; i++)
 				{
 					drivers[i] = new Driver(i);
-					drivers[i].drive();
+					String[] drive_list = drivers[i].drive();
+					for(String step : drive_list)
+					{
+						System.out.println(step);
+					}
 				}
 			}
 			catch(NumberFormatException e)
