@@ -7,12 +7,15 @@ public class CitySim9000
 			try
 			{
 				int seed = Integer.parseInt(args[0]);
-				Location.setSeed(seed);
+				Location.setRand(new Random(seed));
 				Driver[] drivers = new Driver[5];
 				for(int i = 0; i<5; i++)
 				{
 					drivers[i] = new Driver(i);
-					drivers[i].drive();
+					while(!drivers[i].isOutsideCity)
+					{
+						System.out.println(drivers[i].drive());
+					}
 				}
 			}
 			catch(NumberFormatException e)

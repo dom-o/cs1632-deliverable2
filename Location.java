@@ -16,7 +16,7 @@ public class Location
 	private int[] locs_from_here;
 	private int[] streets_from_here;
 	private String name;
-	private int street_to_here;
+	private int street_to_here = -1;
 	
 	public Location(String name_in, int[] to_locs_in, int[] to_streets_in)
 	{
@@ -30,9 +30,9 @@ public class Location
 		return all_locs[rand.nextInt(all_locs.length)];
 	}
 	
-	public static void setSeed(long new_seed)
+	public static void setRand(Random new_rand)
 	{
-		rand.setSeed(new_seed);
+		rand = new_rand;
 	}
 	
 	public static Location getNextLoc(Location prev_loc)

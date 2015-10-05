@@ -9,17 +9,24 @@ public class Driver
 		id = id_in;
 	}
 	
-	public void drive()
+	public boolean isOutsideCity()
+	{
+		return cur_loc.isOutsideCity();
+	}
+	
+	public String drive()
 	{
 		Location new_loc;
-		do
+		if(!cur_loc.isOutsideCity())
 		{
 			new_loc = Location.getNextLoc(cur_loc);
-			System.out.println("Driver " + id + " heading from " + cur_loc + " to " + new_loc + " via " + new_loc.getToStreet() + ".");
+			String to_return = ("Driver " + id + " heading from " + cur_loc + " to " + new_loc + " via " + new_loc.getToStreet() + ".");
 			cur_loc = new_loc;
+			return to_return;
 		}
-		while(!cur_loc.isOutsideCity());
-		
-		System.out.println("Driver " + id + " has left the city!\n-----");
+		else
+		{
+			return ("Driver " + id + " has left the city!\n-----");
+		}
 	}
 }
