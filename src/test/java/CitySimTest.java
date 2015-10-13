@@ -16,10 +16,19 @@ public class CitySimTest
 		assertEquals(loc.isOutsideCity(), true);
 	}
 	
-	/*@Test
-	//Ensure that 
-	public void test1_Navigator_getNextLoc()
+	@Test
+	//Ensure that step calls both the current location and the 
+	public void test1_Navigator_step()
 	{
-		Location loc = mockito.mock()
-	}*/
+		Location mock_loc = mock(Location.class);
+		Map mock_map = mock(Map.class);
+		Navigator nav = new Navigator(mock_loc, mock_map);
+		when(mock_loc.isOutsideCity()).thenReturn(true);
+		when(mock_map.getNextLoc(mock_loc)).thenReturn(Map.all_locs[1]);
+		
+		String s = nav.step();
+		
+		verify(mock_loc, times(1)).isOutsideCity();
+		verify(mock_map, times(1)).getNextLoc(mock_loc);
+	}
 }

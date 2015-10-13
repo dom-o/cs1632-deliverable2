@@ -5,10 +5,20 @@ public class Navigator
 	private Location cur_loc;
 	private int step_num;
 	private boolean ready;
+	private Map map;
 	
 	public Navigator()
 	{
-		cur_loc = getRandomLoc();
+		map = new Map();
+		cur_loc = map.getRandomLoc();
+		step_num = 0;
+		ready = true;
+	}
+	
+	public Navigator(Location loc_in, Map map_in)
+	{
+		map = map_in;
+		cur_loc = loc_in;
 		step_num = 0;
 		ready = true;
 	}
@@ -23,7 +33,7 @@ public class Navigator
 		String step;
 		if(!cur_loc.isOutsideCity() || step_num < 1)
 		{			
-			Location new_loc = getNextLoc(cur_loc);
+			Location new_loc = map.getNextLoc(cur_loc);
 			step = ("heading from " + cur_loc + " to " + new_loc + " via " + new_loc.getStreetToHere() + ".");
 			cur_loc = new_loc;
 		}
@@ -39,18 +49,5 @@ public class Navigator
 	public boolean isOutsideCity()
 	{
 		return cur_loc.isOutsideCity();
-	}
-	
-	public Location getRandomLoc()
-	{
-		return Map.all_locs[Map.rand.nextInt(Map.all_locs.length)];
-	}
-	
-	public Location getNextLoc(Location prev_loc)
-	{
-		int next = Map.rand.nextInt(prev_loc.getLocsFromHere().length);
-		Location next_loc = Map.all_locs[prev_loc.getLocsFromHere()[next]];
-		next_loc.setStreetToHere(Map.streets[prev_loc.getStreetsFromHere()[next]]);
-		return next_loc;
 	}
 }

@@ -19,4 +19,17 @@ public class Map
 	{
 		rand = new Random(seed_in);
 	}
+	
+	public Location getNextLoc(Location prev_loc)
+	{
+		int next = rand.nextInt(prev_loc.getLocsFromHere().length);
+		Location next_loc = all_locs[prev_loc.getLocsFromHere()[next]];
+		next_loc.setStreetToHere(streets[prev_loc.getStreetsFromHere()[next]]);
+		return next_loc;
+	}
+	
+	public Location getRandomLoc()
+	{
+		return all_locs[rand.nextInt(all_locs.length)];
+	}
 }
