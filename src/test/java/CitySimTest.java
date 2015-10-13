@@ -16,11 +16,10 @@ public class CitySimTest
 		assertEquals(loc.isOutsideCity(), true);
 	}
 	
-	
-	@Test
+	/*@Test
 	//Ensure that 
 	public void test1_Navigator_getNextLoc()
 	{
 		Location loc = mockito.mock()
-	}
+	}*/
 }
